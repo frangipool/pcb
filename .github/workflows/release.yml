@@ -15,7 +15,7 @@ jobs:
       id: changelog
       uses: requarks/changelog-action@v1
       with:
-        token: ${{ github.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
         tag: ${{ github.ref_name }}
 
     - name: Archive Release
@@ -33,7 +33,7 @@ jobs:
         makeLatest: true
         name: ${{ github.ref_name }}
         body: ${{ steps.changelog.outputs.changes }}
-        artifacts: "gerber.zip"
+        artifacts: "src/gerber.zip"
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Commit CHANGELOG.md
